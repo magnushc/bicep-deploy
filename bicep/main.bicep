@@ -1,13 +1,14 @@
 targetScope = 'subscription'
 
-@description('The base name of the resources to deploy.')
-param resourceBaseName string
+param resourceBaseName string = 'hmm'
 
-@description('The Azure region into which the resources should be deployed.')
-param location string
+param location string = 'norwayeast'
 
-@description('Tags to apply to all resources')
-param tags object
+param tags object = {
+  PROJECT: 'demo-test'
+  OFFICE: 'Oslo'
+}
+
 
 var resourceGroupName = '${resourceBaseName}-rg'
 
