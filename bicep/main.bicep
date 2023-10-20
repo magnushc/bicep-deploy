@@ -1,6 +1,6 @@
 targetScope = 'subscription'
 
-param resourceBaseName string = 'hmm'
+param resourceBaseName string = 'hmmk'
 
 param location string = 'norwayeast'
 

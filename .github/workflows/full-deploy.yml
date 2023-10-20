@@ -37,7 +37,7 @@ jobs:
       uses: azure/arm-deploy@v1
       with:
         scope: subscription
-        region: 'norwayeast'
+        region: 'northeurope'
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}  
         template: ./bicep/main.bicep
         failOnStdErr: false
