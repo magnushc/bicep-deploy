@@ -22,6 +22,13 @@ jobs:
         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
+    - name: Azure CLI script
+      uses: azure/CLI@v1
+      with:
+        inlineScript: |
+          az config set bicep.use_binary_from_path=False
+          az bicep install
+
     - name: deploy
       uses: azure/arm-deploy@v1
       with:
