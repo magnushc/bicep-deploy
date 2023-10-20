@@ -2,6 +2,10 @@ name: deploy-rg-and-resources
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+      - experimental
 
 permissions:
   id-token: write
