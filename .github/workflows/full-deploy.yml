@@ -42,8 +42,7 @@ jobs:
         inlineScript: |
           az bicep install
           az bicep version
-          az deployment sub create --location norwayeast --parameters $GITHUB_WORKSPACE/bicep/main.bicepparams
-#          az deployment sub create --location norwayeast --template-file $GITHUB_WORKSPACE/bicep/main.bicep --parameters $GITHUB_WORKSPACE/bicep/main.bicepparams
+          az deployment sub create --location norwayeast --template-file $GITHUB_WORKSPACE/bicep/main.bicep --parameters $GITHUB_WORKSPACE/bicep/main.bicepparam
 
     # - name: deploy
     #   uses: azure/arm-deploy@v1
