@@ -13,7 +13,7 @@ permissions:
     
 jobs:
   build-and-deploy:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
 
     # Checkout code
@@ -25,13 +25,21 @@ jobs:
         client-id: ${{ secrets.AZURE_CLIENT_ID }}
         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-
-    - name: deploy
-      uses: azure/arm-deploy@v1
+    
+    - name: Azure CLI script
+      uses: azure/CLI@v1
       with:
-        scope: subscription
-        region: 'norwayeast'
-        subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}  
-        template: ./bicep/main.bicep
-        parameters: ./bicep/main.bicepparams
-        failOnStdErr: false
+        azcliversion: 2.30.0
+        inlineScript: |
+          az bicep upgrade
+          az deployment sub create --location norwayeast --template-file bicep/main.bicep --parameters bicep/main.bicepparams
+
+    # - name: deploy
+    #   uses: azure/arm-deploy@v1
+    #   with:
+    #     scope: subscription
+    #     region: 'norwayeast'
+    #     subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}  
+    #     template: ./bicep/main.bicep
+    #     parameters: ./bicep/main.bicepparams
+    #     failOnStdErr: false
