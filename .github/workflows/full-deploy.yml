@@ -26,23 +26,29 @@ jobs:
         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
+    # - name: Azure CLI script
+    #   uses: azure/CLI@v1
+    #   with:
+    #     azcliversion: 2.53.0
+    #     inlineScript: |
+    #       export RGNAME='${{ vars.RESOURCE_GROUP_NAME }}'
+    #       az bicep install
+    #       az bicep version
+    #       az deployment sub create --location norwayeast --parameters $GITHUB_WORKSPACE/bicep/main.bicepparam
+
     - name: Azure CLI script
       uses: azure/CLI@v1
       with:
         azcliversion: 2.53.0
         inlineScript: |
           export RGNAME='${{ vars.RESOURCE_GROUP_NAME }}'
-          az bicep install
-          az bicep version
-          az deployment sub create --location norwayeast --parameters $GITHUB_WORKSPACE/bicep/main.bicepparam
-#          az deployment sub create --location norwayeast --template-file $GITHUB_WORKSPACE/bicep/main.bicep --parameters $GITHUB_WORKSPACE/bicep/main.bicepparam
 
-    # - name: deploy
-    #   uses: azure/arm-deploy@v1
-    #   with:
-    #     scope: subscription
-    #     region: 'norwayeast'
-    #     subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-    #     template: ./bicep/main.bicep
-    #     parameters: ./bicep/main.bicepparam
-    #     failOnStdErr: false
+    - name: deploy
+      uses: azure/arm-deploy@v1
+      with:
+        scope: subscription
+        region: 'norwayeast'
+        subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+        template: ./bicep/main.bicep
+        parameters: ./bicep/main.bicepparam
+        failOnStdErr: false
