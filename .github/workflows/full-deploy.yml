@@ -26,23 +26,24 @@ jobs:
         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
-    - name: 'Deploy infrastructue with powershell'
-      uses: azure/powershell@v1
-      with:
-        inlineScript: |
-          Get-AzVM -ResourceGroupName "cloud-shell-storage-westeurope"
-        azPSVersion: '3.1.0'
+    # - name: 'Deploy infrastructue with powershell'
+    #   uses: azure/powershell@v1
+    #   with:
+    #     inlineScript: |
+    #       Get-AzVM -ResourceGroupName "cloud-shell-storage-westeurope"
+    #     azPSVersion: '3.1.0'
     
 
 
-    # - name: Azure CLI script
-    #   uses: azure/CLI@v1
-    #   with:
-    #     azcliversion: 2.53.0
-    #     inlineScript: |
-    #       az bicep install
-    #       az bicep version
-    #       az deployment sub create --location norwayeast --template-file $GITHUB_WORKSPACE/bicep/main.bicep --parameters $GITHUB_WORKSPACE/bicep/main.bicepparams
+    - name: Azure CLI script
+      uses: azure/CLI@v1
+      with:
+        azcliversion: 2.53.0
+        inlineScript: |
+          az bicep install
+          az bicep version
+          az deployment sub create --location norwayeast --parameters $GITHUB_WORKSPACE/bicep/main.bicepparams
+#          az deployment sub create --location norwayeast --template-file $GITHUB_WORKSPACE/bicep/main.bicep --parameters $GITHUB_WORKSPACE/bicep/main.bicepparams
 
     # - name: deploy
     #   uses: azure/arm-deploy@v1
