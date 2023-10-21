@@ -29,9 +29,8 @@ jobs:
     - name: Azure CLI script
       uses: azure/CLI@v1
       with:
-        azcliversion: 2.30.0
+        azcliversion: 2.53.0
         inlineScript: |
-          az bicep upgrade
           az deployment sub create --location norwayeast --template-file bicep/main.bicep --parameters bicep/main.bicepparams
 
     # - name: deploy
