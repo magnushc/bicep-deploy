@@ -31,7 +31,7 @@ jobs:
       with:
         azcliversion: 2.53.0
         inlineScript: |
-          export RGNAME='nnnoo'
+          export RGNAME='${{ vars.RESOURCE_GROUP_NAME }}'
           az bicep install
           az bicep version
           az deployment sub create --location norwayeast --parameters $GITHUB_WORKSPACE/bicep/main.bicepparam
