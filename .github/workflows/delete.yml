@@ -32,4 +32,4 @@ jobs:
       with:
         azcliversion: 2.53.0
         inlineScript: |
-          az deployment group create -mode complete --resource-group ${{ vars.RESOURCE_GROUP_NAME }}-rg -template $GITHUB_WORKSPACE/bicep/delete.bicep
+          az deployment group create --mode complete --resource-group ${{ vars.RESOURCE_GROUP_NAME }}-rg -template $GITHUB_WORKSPACE/bicep/delete.bicep
