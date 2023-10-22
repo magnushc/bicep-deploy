@@ -1,4 +1,4 @@
-name: deploy-rg-and-resources
+name: delete all resources
 
 on:
   workflow_dispatch:

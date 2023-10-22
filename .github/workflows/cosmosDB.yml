@@ -1,4 +1,4 @@
-name: deploy-rg-and-resources
+name: deploy-cosmosDB
 
 on:
   workflow_dispatch:
