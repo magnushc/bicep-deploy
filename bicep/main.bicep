@@ -16,12 +16,17 @@ param cosmosDBPostName string
 @description('Locations settings of cosmosDB account.')
 param cdbLocations array
 
+@allowed([
+  'subscription'
+  'resourcegroup'
+])
+param scope string = 'resourcegroup'
+
 var resourceGroupName = '${resourceBaseName}-rg'
 
 var cosmosDBName = '${resourceBaseName}-${cosmosDBPostName}'
 
-
-module resourceGroup 'modules/resourceGroup.bicep' = {
+module resourceGroup 'modules/resourceGroup.bicep' = if (scope == 'subscription') {
   name : 'rgDeploy'
   params: {
     location: location
@@ -29,7 +34,6 @@ module resourceGroup 'modules/resourceGroup.bicep' = {
     tags: tags
   }
 }
-
 
 module cosmosDB 'modules/cosmosDB.bicep' = {
   name: 'cdbDeploy'
