@@ -32,4 +32,4 @@ jobs:
         azcliversion: 2.53.0
         inlineScript: |
           export RGNAME='${{ vars.RESOURCE_GROUP_NAME }}'
-          az deployment sub create --location ${{ vars.SUB_DEPLOY_LOC }} --parameters $GITHUB_WORKSPACE/bicep/main.bicepparam
+          az deployment sub create --location ${{ vars.SUB_DEPLOY_LOC }} --parameters $GITHUB_WORKSPACE/bicep/main.bicepparam --parameters resourceBaseName=yoloit --parameters cosmosDBPostName=aight

@@ -1,15 +1,15 @@
 using './cosmosdb.bicep'
+param name = '${resourceBaseName}-cdb'
 
-param name = 'cdb'
 param tags = {}
 param databaseAccountOfferType = 'Standard'
-param location = 'norwayeast'
+param location = readEnvironmentVariable('R_LOCATION','norwayeast')
 param locations = [
   {
-    locationName: 'norwayeast'
+    locationName: location
     isZoneRedundant: false
     failoverPriority: 0
   }
 ]
 
-
+var resourceBaseName = readEnvironmentVariable('RGNAME', 'ddc-default')

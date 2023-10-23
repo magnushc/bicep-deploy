@@ -1,12 +1,12 @@
 using './main.bicep'
 param resourceBaseName = readEnvironmentVariable('RGNAME', 'ddc-default')
 
-param location = 'norwayeast'
+param location = readEnvironmentVariable('R_LOCATION','norwayeast')
 
 param tags = {
   PROJECT: 'demo-test'
   OFFICE: 'Oslo'
-}
+}  
 
 param cosmosDBPostName = 'cdb'
 
